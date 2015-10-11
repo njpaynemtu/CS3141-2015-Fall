@@ -1,0 +1,106 @@
+1. If game state has been changed to menu then 
+	
+	call menuWindow()
+	
+Menu.h
+	
+	void update()
+	void menuWindow()
+
+
+	
+Menu.cpp 
+	include sdl2lib
+	
+	enum {
+		menuItem
+		menuStatus
+		menuSpell
+		menuQuit
+		
+		menuNumber // number of choices user can slect in the menu 
+	}
+	
+	int curser = menuItem // curser is pointing at item in the beginning
+	
+	itn y = y // coordinate for curser, this y is coordinate is neccessary for showing curser next to selected choice
+
+	menuWindow() {
+		// draw menu using sdllib
+		
+		while( quit is not slected || certain key is pressed )
+		{ 
+			make menubox like 
+			
+					+-------+
+					|@Item  |
+					| Status|
+					| Spell	|
+					| Quit  |
+					+-------+
+			
+			on the top left
+			
+					+-------+
+					|HP:  10|
+					|MP:  10|
+		 			|		|
+					|LV:  01|
+					+-------+
+					
+			using getter, get infor of hp, mp, and lv
+			
+					+--------------------------------------+
+					|									   |
+					+--------------------------------------+
+					
+			make dialog box in the bottom of the screen 
+			
+			switch(curser) // check which enum is pointed right now 
+			{	
+				case item 
+					y = y coordinate of item
+					
+				case status
+					y = y coordinate of status 
+					
+				case spell
+					y = y coordinates of spell
+					
+				case quit 
+					y = y coorfinates of quit
+			}		
+			
+			draw curser with updated y coordinates and fixed x position 	
+		}
+	}
+	
+	// updates the menu window
+	updateMenuWindow() {
+	
+		if key is pressed UP
+			curser = (curser+4)%5 //change what state is now pointed 
+			
+		if key is pressed DOWN
+			curser = (curser+1)%5 
+			
+		if return key is pressed then 
+			switch (curser) // depends on which one is actually selected
+			{
+				case item 
+					go to inventory menu 
+					
+				case status 
+					go to status menu
+					
+				case spell 
+					go to spell menu
+					
+				case quit 
+					exit menu // transition.
+			}
+	}
+	
+
+	
+	
